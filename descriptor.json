@@ -1,0 +1,81 @@
+{
+    "id": "de539875-7bce-40ef-a30e-be0c080b14a6",
+    "name": "LAIM db connector",
+    "description": "Модуль для согласования портов с doc-browser",
+    "fullDescription": "",
+    "ui": {
+    "settings": [
+        {
+            "page": "General",
+            "title": "General",
+            "components": [
+            ]
+        }
+    ],
+    "result": {
+        "title": "Results",
+        "components": []
+    }
+},
+  
+  "ports": [
+      {
+          "name": "df",
+          "label": "df",
+          "in": true,
+          "type": "dataframe",
+          "shape": "shape_dataframe",
+          "description": "Датасет с первичной валидации",
+          "required": true,
+          "order": 1
+      },
+      {
+          "name": "report_path",
+          "label": "report_path",
+          "in": true,
+          "type": "default",
+          "shape": "shape_model",
+          "description": "Docx отчёт о разработке",
+          "required": false,
+          "order": 2,
+          "getPortAsLocalPath": true
+      },
+      {
+          "name": "out_df",
+          "label": "out_df",
+          "in": false,
+          "type": "default",
+          "shape": "shape_model",
+          "description": "Датафрейм в pickle формате",
+          "order": 3
+      },
+
+      {
+          "name": "report_dict",
+          "label": "report_dict",
+          "in": false,
+          "type": "default",
+          "shape": "shape_model",
+          "description": "Отчёт о разработке в формате, принимаемый doc-browser",
+          "order": 4
+      }
+  ],
+   
+  "script": {
+      "type": "python",
+      "baseImageKey": "py312-simple",
+      "deployType": "docker",
+      "runConfiguration": {
+          "sourceFiles": [
+              "main.py"
+          ],
+          "functionName": "main",
+          "functionParameters": [],
+          "output": {
+              "type": "json",
+              "output": []
+          }
+      }
+  },
+  "shape": "other"
+}
